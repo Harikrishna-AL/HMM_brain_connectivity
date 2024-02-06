@@ -49,10 +49,12 @@ def plot(normalized_transition_matrix, labels, num_regions=10):
     pos = nx.circular_layout(G) 
     labels = {i: labels[i] for i in range(10)}
 
-    edge_labels = {(i, j): f'{normalized_transition_matrix[i, j]:.2f}' for i in range(num_regions) for j in range(num_regions) if i != j and float(normalized_transition_matrix[i,j]) > 0.0}
+    edge_labels = {(i, j): f'{normalized_transition_matrix[i, j]:.2f}' for i in range(num_regions) for j in range(num_regions) if i != j and float(normalized_transition_matrix[i,j]) > 0.02}
     print(edge_labels)
 
     nx.draw(G, pos, with_labels=True, labels=labels, font_size=6, node_size=3000, font_color='black', node_color='skyblue')
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_color='red')
 
     plt.title('Brain Region Transition Probabilities')
+    # save the graph
+    plt.savefig('graph.png')
