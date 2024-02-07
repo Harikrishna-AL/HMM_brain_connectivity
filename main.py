@@ -7,7 +7,7 @@ def main():
     normalized_roi_time_series = normalize(roi_time_series)
 
     hmm = HiddenMarkovModel(num_states=48)
-    hmm.fit(normalized_roi_time_series)
+    hmm.fit(normalized_roi_time_series, threshold=0.5, smoothing=1)
 
     plot(hmm.transition_matrix, labels=labels, num_regions=10)
 
